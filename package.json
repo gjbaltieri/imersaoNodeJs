@@ -1,0 +1,46 @@
+{
+  "name": "06-multi-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "nyc": {
+    "exclude": [
+      "src/db/interfaces/IClud-interface.js",
+      "src/errors"
+    ]
+  },
+  "scripts": {
+    "preinstall": "npm i -g pm2",
+    "postinstall":"npm run test:prod",
+    "test": "nyc --reporter=html mocha --timeout 10000 --exit ./src/test/*.test.js",
+    "test:prod": "cross-env NODE_ENV=prod npm t",
+    "start": "cross-env NODE_ENV=prod pm2-runtime api.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/boom": "^10.0.0",
+    "@hapi/hapi": "^20.2.2",
+    "@hapi/inert": "^7.0.0",
+    "@hapi/joi": "^17.0.0",
+    "@hapi/vision": "^7.0.0",
+    "bcrypt": "^5.0.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
+    "hapi-auth-jwt2": "^10.2.0",
+    "hapi-swagger": "^14.5.5",
+    "istanbul": "^0.4.5",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^10.0.0",
+    "mongoose": "^6.4.4",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "pm2": "^5.2.0",
+    "sequelize": "^6.21.3"
+  },
+  "devDependencies": {
+    "nyc": "^15.1.0"
+  }
+}
